@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Search from '../components/Search';
+import Categories from '../components/Categories';
 import './ProductList.css';
 
 class MovieList extends Component {
@@ -21,15 +22,17 @@ class MovieList extends Component {
     const { products } = this.state;
 
     return (
-      <div className="productlist-container">
-        <div className="category-container">
-          categorias
+      <div className="productlist-cover container">
+        <div className="category container">
+          <Categories />
         </div>
-        <div className="search-container">
-          <Search onClick={this.handleSearch} />
-        </div>
-        <div>
-          Nenhum produto foi encontrado
+        <div className="main container">
+          <div className="search container">
+            <Search onClick={this.handleSearch} />
+          </div>
+          <div>
+            Nenhum produto foi encontrado
+          </div>
         </div>
       </div>
     );
