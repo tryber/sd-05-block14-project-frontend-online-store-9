@@ -4,7 +4,7 @@ export default class Pesquisa extends Component {
   constructor() {
     super();
     this.state = { searchText: '' };
-    this.newDate = this.newData.bind(this);
+    this.newData = this.newData.bind(this);
     this.selctItem = this.selctItem.bind(this);
   }
   newData(element) {
@@ -16,7 +16,7 @@ export default class Pesquisa extends Component {
       <div>
         <input
           data-testid="home-initial-message"
-          placeholder="Digite algum termo de pesquisa ou escolha uma categoria."
+          aria-label="Digite algum termo de pesquisa ou escolha uma categoria."
           name="searchTest"
           tipe="text"
           value={this.state.searchText}
@@ -34,7 +34,8 @@ export default class Pesquisa extends Component {
       <button
         data-testid="query-button"
         className="lupa"
-        type="button"
+        type="submit"
+        tabIndex="3"
         onClick={this.selctItem}
       >
       Pesquisar
@@ -43,10 +44,10 @@ export default class Pesquisa extends Component {
   }
   render() {
     return (
-      <div>
-        {this.busca()}
+      <form>
         {this.botao()}
-      </div>
+        {this.busca()}
+      </form>
     );
   }
 }
