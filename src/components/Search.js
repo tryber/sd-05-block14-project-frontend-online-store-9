@@ -15,7 +15,8 @@ export default class Pesquisa extends Component {
   busca() {
     return (
       <div className="busca">
-        <label data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</label><br />
+        <label htmlFor="inputBusca" data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.</label><br />
         <input
           className="inputBusca"
           name="searchTest"
