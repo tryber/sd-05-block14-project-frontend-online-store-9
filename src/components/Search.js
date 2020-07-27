@@ -35,7 +35,6 @@ export default class Pesquisa extends Component {
         data-testid="query-button"
         className="lupa"
         type="submit"
-        tabIndex="3"
         onClick={this.selctItem}
       >
       Pesquisar
