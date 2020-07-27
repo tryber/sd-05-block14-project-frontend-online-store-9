@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Search.css';
 
 export default class Pesquisa extends Component {
   constructor() {
@@ -15,13 +16,15 @@ export default class Pesquisa extends Component {
 
   busca() {
     return (
-      <div>
-        <label data-testid="home-initial-message">"Digite algum termo de pesquisa ou escolha uma categoria."</label>
+      <div className="busca">
+        <label htmlFor="inputBusca" data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </label>
+        <br />
         <input
-
-          aria-label="Digite algum termo de pesquisa ou escolha uma categoria."
+          className="inputBusca"
           name="searchTest"
-          tipe="text"
+          type="text"
           value={this.state.searchText}
           onChange={this.newData}
         />
@@ -38,7 +41,7 @@ export default class Pesquisa extends Component {
     return (
       <button
         data-testid="query-button"
-        className="lupa"
+        className="botao"
         type="submit"
         onClick={this.selctItem}
       >
@@ -49,7 +52,7 @@ export default class Pesquisa extends Component {
 
   render() {
     return (
-      <form>
+      <form className="search">
         {this.botao()}
         {this.busca()}
       </form>
