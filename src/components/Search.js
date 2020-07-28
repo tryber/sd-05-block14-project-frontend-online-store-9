@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './Search.css';
+import Categories from '../components/Categories';
+import './Header.css';
 
 export default class Pesquisa extends Component {
   constructor() {
@@ -23,7 +24,8 @@ export default class Pesquisa extends Component {
           type="text"
           value={this.state.searchText}
           onChange={this.newData}
-        />
+        /><br />
+        <Categories />
       </div>
     );
   }

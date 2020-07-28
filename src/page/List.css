@@ -1,0 +1,14 @@
+header {
+  background-color: #fff159;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 20%;
+}
+
+.logoImg {
+  height: 70px;
+}
+
+.cartImg {
+  height: 30px;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../services/api';
+import './Header.css';
 
 class Categories extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Categories extends React.Component {
     const { categories } = this.state;
 
     return (
-      <select>
+      <select className="menu-nav">
         {categories.map((category) =>
         (<option data-testid="category" key={category.id}>{category.name}</option>))}
       </select>
