@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import List from './page/List';
-import Cart from './page/Cart'
+import Cart from './page/Cart';
+import './App.css';
 
 function App() {
   return (
