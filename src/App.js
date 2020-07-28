@@ -1,13 +1,16 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import List from './page/List';
+import Cart from './page/Cart';
 import './App.css';
-import Categories from './components/Categories';
-import List from './components/List';
 
 function App() {
   return (
     <div className="App">
-      <Categories />
-      <List />
+      <BrowserRouter>
+        <Route path="/" component={List} />
+        <Route path="/cart" component={Cart} />
+      </BrowserRouter>
     </div>
   );
 }
