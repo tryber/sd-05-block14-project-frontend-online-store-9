@@ -12,10 +12,10 @@ class MovieList extends Component {
     };
     this.handleSearch = this.handleSearch.bind(this);
   }
-  
+
   handleSearch(event) {
     const text = event.target.value;
-    this.setState({searchText: text})
+    this.setState({ searchText: text })
   }
 
   render() {
