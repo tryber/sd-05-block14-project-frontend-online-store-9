@@ -9,15 +9,19 @@ export default class Pesquisa extends Component {
     this.newData = this.newData.bind(this);
     this.selctItem = this.selctItem.bind(this);
   }
+
   newData(element) {
     const { name, value } = element.target;
     this.setState({ [name]: value });
   }
+
   busca() {
     return (
       <div className="busca">
         <label htmlFor="inputBusca" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.</label><br />
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </label>
+        <br />
         <input
           className="inputBusca"
           name="searchTest"
@@ -29,10 +33,12 @@ export default class Pesquisa extends Component {
       </div>
     );
   }
+
   selctItem() {
-    const onClick = this.props.onClick;
+    const { onClick } = this.props;
     onClick(this.state);
   }
+
   botao() {
     return (
       <button
@@ -41,10 +47,11 @@ export default class Pesquisa extends Component {
         type="submit"
         onClick={this.selctItem}
       >
-      Pesquisar
+        Pesquisar
       </button>
     );
   }
+
   render() {
     return (
       <form className="search">
