@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { ProductList } from './pages/index';
+import ProductList from './pages/ProductList';
 
 import './App.css';
 
