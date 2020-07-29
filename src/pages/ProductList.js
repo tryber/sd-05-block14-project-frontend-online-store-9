@@ -3,22 +3,19 @@ import { Link } from 'react-router-dom';
 import Search from '../components/Search';
 import cartImg from '../images/cart.png';
 import logoImg from '../images/logo.png';
-import * as api from '../services/api';
-import './List.css';
+import Categories from '../components/Categories';
+import ProductCard from '../components/ProductCard';
+import './ProductList.css';
 
-export default class List extends Component {
-  constructor() {
-    super();
+class ProductList extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      Products: [],
-    }
-    this.detProductor = this.detProductor.bind(this);
+      products: undefined,
+      searchText: undefined,
+    };
   }
 
-  async detProductor(searchText) {
-    await api.getProductsFromCategoryAndQuery(this.state.categoryId, searchText)
-    .then((data) => this.setState({ products: data.results }));
-  }
 
   render() {
     return (
@@ -33,10 +30,15 @@ export default class List extends Component {
             />}
           </Link>
         </header>
+        <div >
+            <Categories />
+        </div>
         <div>
-
-        </div>      
+           
+        </div>
       </div>
     );
   }
 }
+
+export default ProductList;

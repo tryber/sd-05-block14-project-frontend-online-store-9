@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Categories from '../components/Categories';
+import * as api from '../services/api';
 import './Header.css';
 
 export default class Search extends Component {
@@ -9,15 +9,17 @@ export default class Search extends Component {
       searchText: '',
       products: [],
     };
-    console.log(this.state.searchText)
     this.newData = this.newData.bind(this);
+    this.detProductor = this.detProductor.bind(this);
   }
 
   busca() {
     return (
       <div className="busca">
         <label htmlFor="inputBusca" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.</label><br />
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </label>
+        <br />
         <input
           data-testid="query-input"
           className="inputBusca"
@@ -25,7 +27,6 @@ export default class Search extends Component {
           type="text"
           onChange={this.newData}
         /><br />
-        <Categories />
       </div>
     );
   }
@@ -40,12 +41,19 @@ export default class Search extends Component {
       <button
         data-testid="query-button"
         className="botao"
-        type="submit"
+        type="button"
         onClick={this.detProductor}
       >
-      Pesquisar
+        Pesquisar
       </button>
     );
+  }
+
+  async detProductor(searchText) {
+    console.log(this.state.searchText)
+    await api.getProductsFromCategoryAndQuery(undefined, this.state.searchText)
+    .then((data) => this.setState({ products: data.results }));
+    console.log(this.state.products)
   }
 
   render() {
