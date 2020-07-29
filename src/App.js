@@ -3,15 +3,17 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import ProductList from './pages/ProductList';
 
+import Cart from './page/Cart';
 import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={ProductList} />
-      </Switch>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <Route path="/" component={ProductList} />
+        <Route path="/cart" component={Cart} />
+      </BrowserRouter>
+    </div>
   );
 }
 
