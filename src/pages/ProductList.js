@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import Search from '../components/Search';
-import ProductCard from '../components/ProductCard';
-import Categories from '../components/Categories';
+import List from '../components/List';
+
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 import cartImg from '../images/cart.png';
 import logoImg from '../images/logo.png';
@@ -25,7 +26,15 @@ class MovieList extends Component {
     this.setState({ searchText: text });
   }
 
+  componentDidMount() {
+    const { searchText, category } = this.state;
+    getProductsFromCategoryAndQuery(category, searchText)
+      .then((response) => this.setState({ products: response }));
+  }
+
+
   render() {
+    const { products } = this.props;
     return (
       <div className="productlist-cover container">
         <header className="main container">
@@ -42,9 +51,7 @@ class MovieList extends Component {
             />
           </Link>
         </header>
-        <div>
-          Nenhum produto foi encontrado
-        </div>
+        <List products={products} />
       </div>
     );
   }
