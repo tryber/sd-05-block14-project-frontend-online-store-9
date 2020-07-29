@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import Categories from './Categories';
+
+import * as api from '../services/api';
 import './Header.css';
 
-export default class Pesquisa extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchText: '',
-      category: undefined,
-    };
-    this.newData = this.newData.bind(this);
-    this.selctItem = this.selctItem.bind(this);
-  }
-
-  newData(element) {
-    const { name, value } = element.target;
-    this.setState({ [name]: value });
+export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { searchText: '' };
   }
 
   busca() {
@@ -26,21 +17,21 @@ export default class Pesquisa extends Component {
         </label>
         <br />
         <input
+          data-testid="query-input"
           className="inputBusca"
-          name="searchTest"
+          name="searchText"
           type="text"
-          value={this.state.searchText}
           onChange={this.newData}
         />
         <br />
-        <Categories />
       </div>
     );
   }
 
-  selctItem() {
-    const { onClick } = this.props;
-    onClick(this.state);
+
+  newData(event) {
+    const text = event.target.value;
+    this.setState({ searchText: text });
   }
 
   botao() {
@@ -48,12 +39,19 @@ export default class Pesquisa extends Component {
       <button
         data-testid="query-button"
         className="botao"
-        type="submit"
-        onClick={this.selctItem}
+        type="button"
+        onClick={this.detProductor}
       >
         Pesquisar
       </button>
     );
+  }
+
+  async detProductor() {
+    console.log(this.state.searchText);
+    // await api.getProductsFromCategoryAndQuery(undefined, this.state.searchText)
+    //   .then((data) => this.setState({ products: data.results }));
+    console.log(this.state.products);
   }
 
   render() {

@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import Search from '../components/Search';
-import List from '../components/List';
-
-import { getProductsFromCategoryAndQuery } from '../services/api';
-
 import cartImg from '../images/cart.png';
 import logoImg from '../images/logo.png';
+import Categories from '../components/Categories';
+import List from '../components/List';
+import * as api from '../services/api';
 import './ProductList.css';
 
-class MovieList extends Component {
+class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,43 +16,51 @@ class MovieList extends Component {
       searchText: undefined,
       category: undefined,
     };
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  handleSearch(event) {
-    const text = event.target.value;
-    this.setState({ searchText: text });
+    this.onSearch = this.onSearch.bind(this);
   }
 
   componentDidMount() {
-    const { searchText, category } = this.state;
-    getProductsFromCategoryAndQuery(category, searchText)
-      .then((response) => this.setState({ products: response }));
+    const { category, searchText } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searchText)
+      .then(({ result }) => this.setState({ product: result }));
   }
 
+  onSearch(products) {
+    this.setState.products(products);
+  }
 
   render() {
-    const { products } = this.props;
+    const { searchText, category } = this.state;
     return (
-      <div className="productlist-cover container">
-        <header className="main container">
+      <div>
+        <header>
           <img className="logoImg" src={logoImg} alt="Logo" />
-          <div className="search container">
-            <Search onClick={this.handleSearch} />
-          </div>
+          <Search
+            searchText={searchText}
+            onSearch={(event) => this.setState({ searchText: event.target.value })}
+
+          />
           <Link to="/cart" className="shopping-cart-button">
             <img
               className="cartImg"
               data-testid="shopping-cart-button"
-              alt="imagem do Carrinho"
+              alt="Imagem do Carrinho"
               src={cartImg}
             />
           </Link>
         </header>
-        <List products={products} />
+        <div>
+          <Categories
+            category={category}
+            onCategoryChange={(event) => this.setState({ category: event.target.value })}
+          />
+        </div>
+        <div>
+          <List products={products} />
+        </div>
       </div>
     );
   }
 }
 
-export default MovieList;
+export default ProductList;
