@@ -23,8 +23,11 @@ class Categories extends React.Component {
 
     return (
       <select className="menu-nav">
-        {categories.map((category) =>
-        (<option data-testid="category" key={category.id}>{category.name}</option>))}
+        {categories.map((category) => (
+          <option data-testid="category" key={category.id}>
+            {category.name}
+          </option>
+        ))}
       </select>
     );
   }
