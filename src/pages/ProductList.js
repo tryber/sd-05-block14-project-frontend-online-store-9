@@ -19,7 +19,6 @@ class MovieList extends Component {
   }
 
   render() {
-
     return (
       <div className="productlist-cover container">
         <div className="category container">
