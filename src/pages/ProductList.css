@@ -1,29 +1,15 @@
-.container {
-  border: 1px black solid;
+header {
+  background-color: #fff159;
   display: flex;
+  justify-content: space-around;
+  padding: 5px 20%;
 }
 
-.productlist-cover {
-  border: 1px black solid;
-  display: flex;
-  width: 100%;
+.logoImg {
+  height: 70px;
 }
 
-.main {
-  flex-direction: column;
-  width: 70%;
+.cartImg {
+  height: 30px;
 }
 
-.category {
-  align-items: center;
-  border-radius: 10px;
-  height: 200px;
-  padding-top: 10px;
-  width: 240px;
-}
-
-.search {
-  display: flex;
-  height: 75px;
-  justify-content: flex-start;
-}
