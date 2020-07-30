@@ -20,14 +20,24 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
+    const { onCategoryChange } = this.props;
 
     return (
-      <select className="menu-nav">
-        {categories.map((category) => (
-          <option data-testid="category" key={category.id}>
-            {category.name}
-          </option>
-        ))}
+      <select
+        className="menu-nav"
+        onChange={onCategoryChange}
+        name="category"
+      >
+        {categories
+          .map(({ id, name }) => (
+            <option
+              data-testid="category"
+              key={id}
+              value={id}
+            >
+              {name}
+            </option>
+          ))}
       </select>
     );
   }

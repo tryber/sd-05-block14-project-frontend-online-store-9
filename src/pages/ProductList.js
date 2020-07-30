@@ -16,30 +16,46 @@ class ProductList extends Component {
       searchText: undefined,
       category: undefined,
     };
-    this.onSearch = this.onSearch.bind(this);
+    this.getState = this.getState.bind(this);
+    this.getProducts = this.getProducts.bind(this);
   }
 
-  componentDidMount() {
+  async getProducts() {
     const { category, searchText } = this.state;
-    api.getProductsFromCategoryAndQuery(category, searchText)
-      .then(({ result }) => this.setState({ product: result }));
+    await api.getProductsFromCategoryAndQuery(category, searchText)
+      .then(({ results }) => this.setState({ products: results }));
+    console.log('to no getProducts');
   }
 
-  onSearch(products) {
-    this.setState.products(products);
+  getState(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  botao() {
+    return (
+      <button
+        data-testid="query-button"
+        className="botao"
+        type="button"
+        onClick={this.getProducts}
+      >
+        Pesquisar
+      </button>
+    );
   }
 
   render() {
-    const { searchText, category } = this.state;
+    const { category, products } = this.state;
     return (
       <div>
         <header>
           <img className="logoImg" src={logoImg} alt="Logo" />
           <Search
-            searchText={searchText}
-            onSearch={(event) => this.setState({ searchText: event.target.value })}
-
+            onSearchTextChange={this.getState}
+            // onClick={this.onClick}
           />
+          {this.botao()}
           <Link to="/cart" className="shopping-cart-button">
             <img
               className="cartImg"
@@ -52,7 +68,7 @@ class ProductList extends Component {
         <div>
           <Categories
             category={category}
-            onCategoryChange={(event) => this.setState({ category: event.target.value })}
+            onCategoryChange={this.getState}
           />
         </div>
         <div>
