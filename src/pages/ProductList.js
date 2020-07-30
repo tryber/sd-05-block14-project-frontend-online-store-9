@@ -21,12 +21,6 @@ class ProductList extends Component {
     this.getProducts = this.getProducts.bind(this);
   }
 
-  componentDidUpdate() {
-    const { category, searchText } = this.state;
-    api.getProductsFromCategoryAndQuery(category, searchText)
-      .then(({ results }) => this.setState({ products: results }));
-  }
-
   async getProducts() {
     const { category, searchText } = this.state;
     await api.getProductsFromCategoryAndQuery(category, searchText)
@@ -62,7 +56,7 @@ class ProductList extends Component {
           <img className="logoImg" src={logoImg} alt="Logo" />
           <Search
             onSearchTextChange={this.getState}
-            // onClick={this.onClick}
+            onClick={this.onClick}
           />
           {this.botao()}
           <Link to="/cart" className="shopping-cart-button">

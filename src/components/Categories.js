@@ -20,7 +20,7 @@ class Categories extends React.Component {
 
   render() {
     const { categories } = this.state;
-    const { onCategoryChange, selectedValue } = this.props;
+    const { onCategoryChange } = this.props;
 
     return (
       <select
@@ -29,6 +29,7 @@ class Categories extends React.Component {
         name="category"
         // value={categories[0].id}
       >
+        <option>Categorias</option>
         {categories
           .map(({ id, name }) => (
             <option
