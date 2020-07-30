@@ -6,6 +6,7 @@ import logoImg from '../images/logo.png';
 import Categories from '../components/Categories';
 import ProductCard from '../components/ProductCard';
 import './ProductList.css';
+import Cart from './Cart';
 
 class ProductList extends Component {
   constructor(props) {
@@ -16,8 +17,8 @@ class ProductList extends Component {
     };
   }
 
-
   render() {
+    const { products } = this.props
     return (
       <div>
         <header>
@@ -31,10 +32,10 @@ class ProductList extends Component {
           </Link>
         </header>
         <div >
-            <Categories />
+            <Categories/>
         </div>
         <div>
-           
+           <ProductCard />
         </div>
       </div>
     );
