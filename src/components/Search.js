@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as api from '../services/api';
+
 import './Header.css';
 
 export default class Search extends Component {
@@ -7,13 +7,19 @@ export default class Search extends Component {
     super(props);
     this.state = {
       searchText: '',
-      products: [],
+      category: '',
+      productList: undefined,
     };
     this.newData = this.newData.bind(this);
-    this.detProductor = this.detProductor.bind(this);
+  }
+
+  newData(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   busca() {
+    const { searchText, onSearchTextChange } = this.props;
     return (
       <div className="busca">
         <label htmlFor="inputBusca" data-testid="home-initial-message">
@@ -23,43 +29,18 @@ export default class Search extends Component {
         <input
           data-testid="query-input"
           className="inputBusca"
-          name="searchTest"
+          name="searchText"
           type="text"
-          onChange={this.newData}
-        /><br />
+          value={searchText}
+          onChange={onSearchTextChange}
+        />
       </div>
     );
-  }
-
-  newData(event) {
-    const text = event.target.value;
-    this.setState({ searchText: text });
-  }
-
-  botao() {
-    return (
-      <button
-        data-testid="query-button"
-        className="botao"
-        type="button"
-        onClick={this.detProductor}
-      >
-        Pesquisar
-      </button>
-    );
-  }
-
-  async detProductor(searchText) {
-    console.log(this.state.searchText)
-    await api.getProductsFromCategoryAndQuery(undefined, this.state.searchText)
-    .then((data) => this.setState({ products: data.results }));
-    console.log(this.state.products)
   }
 
   render() {
     return (
       <form className="search">
-        {this.botao()}
         {this.busca()}
       </form>
     );

@@ -4,7 +4,8 @@ import Search from '../components/Search';
 import cartImg from '../images/cart.png';
 import logoImg from '../images/logo.png';
 import Categories from '../components/Categories';
-import ProductCard from '../components/ProductCard';
+import List from '../components/List';
+import * as api from '../services/api';
 import './ProductList.css';
 import Cart from './Cart';
 
@@ -14,28 +15,68 @@ class ProductList extends Component {
     this.state = {
       products: undefined,
       searchText: undefined,
+      category: undefined,
+      update: false,
     };
+    this.getState = this.getState.bind(this);
+    this.getProducts = this.getProducts.bind(this);
+  }
+
+  async getProducts() {
+    const { category, searchText } = this.state;
+    await api.getProductsFromCategoryAndQuery(category, searchText)
+      .then(({ results }) => this.setState({ products: results }));
+  }
+
+  getState(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  botao() {
+    return (
+      <button
+        data-testid="query-button"
+        className="botao"
+        type="button"
+        onClick={() => {
+          this.getProducts();
+          this.setState({ update: true });
+        }}
+      >
+        Pesquisar
+      </button>
+    );
   }
 
   render() {
-    const { products } = this.props
+    const { category, products } = this.state;
     return (
       <div>
         <header>
-          {<img className="logoImg" src={logoImg} alt="Logo" />}
-          <Search />
+          <img className="logoImg" src={logoImg} alt="Logo" />
+          <Search
+            onSearchTextChange={this.getState}
+            onClick={this.onClick}
+          />
+          {this.botao()}
           <Link to="/cart" className="shopping-cart-button">
-            {<img
-              className="cartImg" data-testid="shopping-cart-button"
-              alt="Imagem do Carrinho" src={cartImg}
-            />}
+            <img
+              className="cartImg"
+              data-testid="shopping-cart-button"
+              alt="Imagem do Carrinho"
+              src={cartImg}
+            />
           </Link>
         </header>
-        <div >
-            <Categories/>
+        <div className="bar">
+          <Categories
+            category={category}
+            onCategoryChange={this.getState}
+          />
         </div>
-        <div>
-           <ProductCard />
+        <div className="body">
+          <List products={products} />
         </div>
       </div>
     );
