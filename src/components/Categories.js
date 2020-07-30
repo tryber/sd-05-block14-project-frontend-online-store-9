@@ -2,6 +2,21 @@ import React from 'react';
 import * as api from '../services/api';
 import './Header.css';
 
+const CategoryOption = (props) => (
+  <label
+    htmlFor={props.value}
+  >
+    <input
+      type="radio"
+      name="category"
+      data-testid="category"
+      value={props.value}
+      onChange={props.onCategoryChange}
+    />
+    {props.name}
+  </label>
+);
+
 class Categories extends React.Component {
   constructor(props) {
     super(props);
@@ -9,9 +24,10 @@ class Categories extends React.Component {
     this.updateCategories = this.updateCategories.bind(this);
   }
 
-  async componentDidMount() {
-    const categories = await api.getCategories();
-    this.updateCategories(categories);
+  componentDidMount() {
+    api.getCategories().then(
+      (resolve) => this.updateCategories(resolve),
+    );
   }
 
   updateCategories(newCategories) {
@@ -23,24 +39,21 @@ class Categories extends React.Component {
     const { onCategoryChange } = this.props;
 
     return (
-      <select
+      <div
         className="menu-nav"
-        onChange={onCategoryChange}
-        name="category"
-        // value={categories[0].id}
       >
-        <option>Categorias</option>
+        <span>Categorias</span>
         {categories
           .map(({ id, name }) => (
-            <option
+            <CategoryOption
               data-testid="category"
               key={id}
               value={id}
-            >
-              {name}
-            </option>
+              name={name}
+              onCategoryChange={onCategoryChange}
+            />
           ))}
-      </select>
+      </div>
     );
   }
 }
