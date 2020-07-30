@@ -27,9 +27,10 @@ class ProductList extends Component {
       .then(({ results }) => this.setState({ products: results }));
   }
 
-  getState(event) {
+  async getState(event) {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    await this.setState({ [name]: value });
+    if (name === 'category') this.getProducts();
   }
 
   botao() {
