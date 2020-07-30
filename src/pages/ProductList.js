@@ -15,16 +15,22 @@ class ProductList extends Component {
       products: undefined,
       searchText: undefined,
       category: undefined,
+      update: false,
     };
     this.getState = this.getState.bind(this);
     this.getProducts = this.getProducts.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { category, searchText } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searchText)
+      .then(({ results }) => this.setState({ products: results }));
   }
 
   async getProducts() {
     const { category, searchText } = this.state;
     await api.getProductsFromCategoryAndQuery(category, searchText)
       .then(({ results }) => this.setState({ products: results }));
-    console.log('to no getProducts');
   }
 
   getState(event) {
@@ -38,7 +44,10 @@ class ProductList extends Component {
         data-testid="query-button"
         className="botao"
         type="button"
-        onClick={this.getProducts}
+        onClick={() => {
+          this.getProducts();
+          this.setState({ update: true });
+        }}
       >
         Pesquisar
       </button>
