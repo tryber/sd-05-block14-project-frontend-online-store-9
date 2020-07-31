@@ -1,0 +1,37 @@
+.list {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0 3%;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin: 5px;
+  overflow: hidden;
+  width: 200px;
+}
+
+.card-image {
+  margin: 0 10%;
+  width: 80%;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.card-price {
+  font-size: 25px;
+}

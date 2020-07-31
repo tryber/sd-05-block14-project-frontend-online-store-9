@@ -1,61 +1,40 @@
 import React, { Component } from 'react';
-import Categories from '../components/Categories';
-import './Header.css';
 
-export default class Pesquisa extends Component {
-  constructor() {
-    super();
-    this.state = { searchText: '' };
+export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchText: '',
+      category: '',
+      productList: undefined,
+    };
     this.newData = this.newData.bind(this);
-    this.selctItem = this.selctItem.bind(this);
   }
 
-  newData(element) {
-    const { name, value } = element.target;
+  newData(event) {
+    const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
   busca() {
+    const { searchText, onSearchTextChange } = this.props;
     return (
-      <div className="busca">
-        <label htmlFor="inputBusca" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
-        <br />
+      <div>
         <input
+          data-testid="query-input"
           className="inputBusca"
-          name="searchTest"
+          name="searchText"
           type="text"
-          value={this.state.searchText}
-          onChange={this.newData}
-        /><br />
-        <Categories />
+          value={searchText}
+          onChange={onSearchTextChange}
+        />
       </div>
-    );
-  }
-
-  selctItem() {
-    const { onClick } = this.props;
-    onClick(this.state);
-  }
-
-  botao() {
-    return (
-      <button
-        data-testid="query-button"
-        className="botao"
-        type="submit"
-        onClick={this.selctItem}
-      >
-        Pesquisar
-      </button>
     );
   }
 
   render() {
     return (
       <form className="search">
-        {this.botao()}
         {this.busca()}
       </form>
     );
