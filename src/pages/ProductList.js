@@ -33,7 +33,6 @@ class ProductList extends Component {
     await this.setState({ [name]: value });
     if (name === 'category') this.getProducts();
   }
-
   botao() {
     return (
       <button
