@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../components/Search';
 import cartImg from '../images/cart.png';
+import lupaImg from '../images/lupa.png';
 import logoImg from '../images/logo.png';
 import Categories from '../components/Categories';
 import List from '../components/List';
 import * as api from '../services/api';
 import './ProductList.css';
-import Cart from './Cart';
 
 class ProductList extends Component {
   constructor(props) {
@@ -38,14 +38,14 @@ class ProductList extends Component {
     return (
       <button
         data-testid="query-button"
-        className="botao"
+        className="botaoPesquisa"
         type="button"
         onClick={() => {
           this.getProducts();
           this.setState({ update: true });
         }}
       >
-        Pesquisar
+        {<img className="lupa" alt="Imagem lupa" src={lupaImg} />}
       </button>
     );
   }
@@ -54,7 +54,7 @@ class ProductList extends Component {
     const { category, products } = this.state;
     return (
       <div>
-        <header>
+        <header className="header">
           <img className="logoImg" src={logoImg} alt="Logo" />
           <Search
             onSearchTextChange={this.getState}
@@ -63,20 +63,20 @@ class ProductList extends Component {
           {this.botao()}
           <Link to="/cart" className="shopping-cart-button">
             <img
-              className="cartImg"
+              className="shopping-cart-button"
               data-testid="shopping-cart-button"
               alt="Imagem do Carrinho"
               src={cartImg}
             />
           </Link>
         </header>
-        <div className="bar">
-          <Categories
-            category={category}
-            onCategoryChange={this.getState}
-          />
-        </div>
         <div className="body">
+          <div>
+            <Categories
+              category={category}
+              onCategoryChange={this.getState}
+            />
+          </div>
           <List products={products} />
         </div>
       </div>

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import './Header.css';
-
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -21,11 +19,7 @@ export default class Search extends Component {
   busca() {
     const { searchText, onSearchTextChange } = this.props;
     return (
-      <div className="busca">
-        <label htmlFor="inputBusca" data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </label>
-        <br />
+      <div>
         <input
           data-testid="query-input"
           className="inputBusca"
