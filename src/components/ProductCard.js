@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ProductCard.css';
+// import './ProductCard.css';
 
 export default class ProductCard extends Component {
   render() {
@@ -12,6 +12,7 @@ export default class ProductCard extends Component {
         <img className="card-image" src={product.thumbnail} alt={product.title} />
         <h4 className="card-title">{product.title}</h4>
         <p className="card-price">{product.price}</p>
+        <button data-testid="product-add-to-cart">Adicionar ao carrinho</button>
       </div>
     );
   }
