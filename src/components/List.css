@@ -1,0 +1,12 @@
+.initial-message {
+  font-size: 30px;
+  margin: 30px;
+  text-align: center;
+}
+
+.productslist {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
+  padding: 20px;
+}
