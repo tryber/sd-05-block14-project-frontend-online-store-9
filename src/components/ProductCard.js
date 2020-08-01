@@ -20,14 +20,10 @@ export default class ProductCard extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <img className="card-image" src={product.thumbnail} alt={product.title} />
-        <h4 className="card-title">{product.title}</h4>
-        <p className="card-price">{product.price}</p>
-        <Link
-          to={`/details/${product.id}`}
-          data-testid="product-detail-link"
-        >
-          Ver detalhes
+        <Link to={`/details/${product.id}`} data-testid="product-detail-link">
+          <img className="card-image" src={product.thumbnail} alt={product.title} />
+          <h4 className="card-title">{product.title}</h4>
+          <p className="card-price">{product.price}</p>
         </Link>
       </div>
     );
