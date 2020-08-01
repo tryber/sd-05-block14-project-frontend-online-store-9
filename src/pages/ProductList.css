@@ -33,6 +33,7 @@ header {
 .shopping-cart-button {
   align-items: center;
   height: 30px;
+  float: right;
 }
 
 .menu-nav {
