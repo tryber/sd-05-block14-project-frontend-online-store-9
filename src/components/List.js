@@ -7,7 +7,8 @@ export default class List extends Component {
     const { products } = this.props;
     return !products ? (
       <span
-        data-testid="home-initial-message" className="initial-message"
+        data-testid="home-initial-message"
+        className="initial-message"
       >
         Digite algum termo de pesquisa ou escolha uma categoria.
       </span>
