@@ -5,6 +5,7 @@ import cartImg from '../images/cart.png';
 import lupaImg from '../images/lupa.png';
 import logoImg from '../images/logo.png';
 import Categories from '../components/Categories';
+import ContadorCart from '../components/ContadorCart';
 import List from '../components/List';
 import * as api from '../services/api';
 import './ProductList.css';
@@ -50,6 +51,22 @@ class ProductList extends Component {
     );
   }
 
+  cartButton() {
+    return (
+      <div>
+        <ContadorCart />
+        <Link to="/cart" className="shopping-cart-button">
+            <img
+              className="shopping-cart-button"
+              data-testid="shopping-cart-button"
+              alt="Imagem do Carrinho"
+              src={cartImg}
+            />
+          </Link>
+      </div>
+    )
+  }
+
   render() {
     const { category, products } = this.state;
     return (
@@ -61,14 +78,7 @@ class ProductList extends Component {
             onClick={this.onClick}
           />
           {this.botao()}
-          <Link to="/cart" className="shopping-cart-button">
-            <img
-              className="shopping-cart-button"
-              data-testid="shopping-cart-button"
-              alt="Imagem do Carrinho"
-              src={cartImg}
-            />
-          </Link>
+          {this.cartButton()}
         </header>
         <div className="body">
           <div>
