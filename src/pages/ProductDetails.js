@@ -9,6 +9,7 @@ class ProductDetails extends React.Component {
       product: null,
     };
     this.updateState = this.updateState.bind(this);
+    this.botaoAdd = this.botaoAdd.bind(this);
   }
 
   async componentDidMount() {
@@ -25,6 +26,21 @@ class ProductDetails extends React.Component {
     });
   }
 
+  botaoAdd() {
+    return (
+      <button
+        data-testid="product-detail-add-to-cart"
+        className="shopping-cart-button"
+        type="button"
+        onClick={() => {
+          localStorage.setItem('cart', this.props.match.params.id)
+        }}
+      >
+        Adicionar ao Carrinho
+      </button>
+    );
+  }
+  
   render() {
     const { loading, product } = this.state;
     if (loading) return <h1>Carregando...</h1>;
@@ -35,6 +51,7 @@ class ProductDetails extends React.Component {
         <img src={product.thumbnail} alt="product thumbnail" />
         <h2>{product.price}</h2>
         <Link to="/">Voltar</Link>
+        {this.botaoAdd()}
       </div>
     );
   }
