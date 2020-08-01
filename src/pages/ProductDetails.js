@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AddToCart } from '../services/LocalStorageHandler'; 
+import { AddToCart } from '../services/LocalStorageHandler';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -33,10 +33,11 @@ class ProductDetails extends React.Component {
         data-testid="product-detail-add-to-cart"
         className="shopping-cart-button"
         type="button"
+
         onClick={() => {
           const { match: { params: { id } } } = this.props;
           AddToCart(id);
-          }} 
+        }}
       >
         Adicionar ao Carrinho
       </button>
