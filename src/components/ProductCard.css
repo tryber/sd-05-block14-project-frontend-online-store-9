@@ -1,10 +1,15 @@
-.list {
+/* .list {
   display: flex;
   flex-flow: row wrap;
   padding: 0 3%;
+} */
+
+.card-image , .card-title , .card-price {
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .card {
+  align-items: center;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 3px;
@@ -12,26 +17,38 @@
   flex-direction: column;
   height: 300px;
   margin: 5px;
+  padding: 0;
   overflow: hidden;
-  width: 200px;
+  width: 250px;
 }
 
 .card-image {
-  margin: 0 10%;
-  width: 80%;
-}
-
-.card-body {
-  flex: 1 1 auto;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 160px;
 }
 
 .card-title {
   font-size: 18px;
   font-weight: 500;
-  margin: 0 0 12px;
+  margin: 0 0 1px;
+  width: 95%;
 }
 
 .card-price {
-  font-size: 25px;
+  font-size: 15px;
+  margin: 0 0 5px;
+  width: 100%;
+}
+
+.product-add-to-cart {
+  position: relative;
+  top: 160px;
+  visibility: hidden;
+  width: 95%;
+}
+
+.card:hover .product-add-to-cart {
+  visibility: visible;
 }
