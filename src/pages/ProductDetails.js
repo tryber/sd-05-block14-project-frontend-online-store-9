@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Storage from '../services/LocalStorageHandler';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class ProductDetails extends React.Component {
       commentList: [],
     };
     this.updateState = this.updateState.bind(this);
+    this.botaoAdd = this.botaoAdd.bind(this);
     this.addComment = this.addComment.bind(this);
     this.updateCommentList = this.updateCommentList.bind(this);
   }
@@ -40,6 +42,21 @@ class ProductDetails extends React.Component {
     this.setState({ newComment: event.target.value });
   }
 
+  botaoAdd() {
+    return (
+      <button
+        data-testid="product-detail-add-to-cart"
+        className="shopping-cart-button"
+        type="button"
+        onClick={() => {
+          Storage(this.props.match.params.id);
+        }}
+      >
+        Adicionar ao Carrinho
+      </button>
+    );
+  }
+
   render() {
     const { loading, product, newComment, commentList } = this.state;
 
@@ -64,6 +81,7 @@ class ProductDetails extends React.Component {
           </ul>
         </div>
         <Link to="/">Voltar</Link>
+        {this.botaoAdd()}
       </div>
     );
   }
