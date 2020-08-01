@@ -11,7 +11,7 @@ class Payment extends React.Component {
       phone: '',
       cep: '',
       address: '',
-    }
+    };
     this.confirmPurchase = this.confirmPurchase.bind(this);
     this.updateState = this.updateState.bind(this);
   }
@@ -34,50 +34,106 @@ class Payment extends React.Component {
     });
   }
 
+  renderFullName() {
+    const { fullName } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-fullname">Nome completo:</label>
+        <input
+          data-testid="checkout-fullname" type="text" name="fullName"
+          value={fullName} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  renderEmail() {
+    const { email } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-email">E-mail:</label>
+        <input
+          data-testid="checkout-email" type="text" name="email"
+          value={email} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  renderPhone() {
+    const { phone } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-phone">Telefone:</label>
+        <input
+          data-testid="checkout-phone" type="text" name="phone"
+          value={phone} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  renderCpf() {
+    const { cpf } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-cpf">CPF:</label>
+        <input
+          data-testid="checkout-cpf" type="text" name="cpf"
+          value={cpf} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  renderCep() {
+    const { cep } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-cep">CEP:</label>
+        <input
+          data-test-id="checkout-cep" type="text" name="cep"
+          value={cep} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  renderAddress() {
+    const { address } = this.state;
+    return (
+      <div>
+        <label htmlFor="checkout-address">Endereço:</label>
+        <input
+          data-testid="checkout-address" type="text" name="address"
+          value={address} onChange={this.updateState}
+        />
+        <br />
+      </div>
+    );
+  }
+
   render() {
-    const { fullName, email, cpf, phone, cep, address } = this.state;
-    return(
+    return (
       <div>
         <div>
-
-        <label htmlFor="checkout-fullname">Nome completo:</label>
-        <input data-testid="checkout-fullname" type="text" value={fullName} name='fullName' onChange={this.updateState}></input>
-        <br />
-
-        <label htmlFor="checkout-email">E-mail:</label>
-        <input data-testid="checkout-email" type="text" value={email} name='email' onChange={this.updateState}></input>
-        <br />
-
-        <label htmlFor="checkout-cpf">CPF:</label>
-        <input data-testid="checkout-cpf" type="text" value={cpf} name='cpf' onChange={this.updateState}></input>
-        <br />
-
-        <label htmlFor="checkout-phone">Telefone:</label>
-        <input data-testid="checkout-phone" type="text" value={phone} name='phone' onChange={this.updateState}></input>
-        <br />
-
-        <label htmlFor="checkout-cep">CEP:</label>
-        <input data-test-id="checkout-cep" type="text" value={cep} name='cep' onChange={this.updateState}></input>
-        <br />
-
-        <label htmlFor="checkout-address">Endereço:</label>
-        <input data-testid="checkout-address" type="text" value={address} name='address' onChange={this.updateState}></input>
-        
-        <br />
-        <button type="submitt" onClick={this.confirmPurchase}>Confirmar</button>
-        <br />
-
+          {this.renderFullName()}
+          {this.renderEmail()}
+          {this.renderPhone()}
+          {this.renderCpf()}
+          {this.renderCep()}
+          {this.renderAddress()}
+          <button type="submitt" onClick={this.confirmPurchase}>Confirmar</button>
         </div>
         <Link to="/">Voltar</Link>
       </div>
-    )
+    );
   }
 }
 
 export default Payment;
-// Elemento "Nome completo" deve possuir o atributo data-testid com o valor checkout-fullname.
-// Elemento "Email" deve possuir o atributo data-testid com o valor checkout-email.
-// Elemento "CPF" deve possuir o atributo data-testid com o valor checkout-cpf.
-// Elemento "Telefone" deve possuir o atributo data-testid com o valor checkout-phone.
-// Elemento "CEP" deve possuir o atributo data-testid com o valor checkout-cep.
-// Elemento "Endereço" deve possuir o atributo data-testid com o valor checkout-address.
