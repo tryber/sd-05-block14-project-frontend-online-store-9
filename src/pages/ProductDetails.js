@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Storage from '../services/LocalStorageHandler';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -33,14 +34,14 @@ class ProductDetails extends React.Component {
         className="shopping-cart-button"
         type="button"
         onClick={() => {
-          localStorage.setItem('cart', this.props.match.params.id)
+          Storage(this.props.match.params.id);
         }}
       >
         Adicionar ao Carrinho
       </button>
     );
   }
-  
+
   render() {
     const { loading, product } = this.state;
     if (loading) return <h1>Carregando...</h1>;
