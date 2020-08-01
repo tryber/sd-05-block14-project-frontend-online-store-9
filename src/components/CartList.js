@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
 import CartVazio from './CarrinhoVazio';
 import ItemCart from './ItemCart';
+import { getProductById } from '../services/api';
 
 export default class CartList extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = { fetchProducts: undefined };
+  }
+
+  async componentDidMount() {
     const { products } = this.props;
-    return !products ? (
+    if (products.length > 0) {
+      const items = [];
+      for (let i = 0; i < products.length; i++) {
+        const itemId = products[i];
+        const response = await fetch(`https://api.mercadolibre.com/items/${itemId}`);
+        const data = await response.json();
+        items.push(data);
+      }
+      this.setState(
+        { fetchProducts: items },
+      );
+    }
+  }
+
+  render() {
+    const { fetchProducts } = this.state;
+    return !fetchProducts ? (
       <CartVazio />
     )
       : (
         <div className="productslist">
-          {products.map((product) => <ItemCart product={product} key={product.id} />)}
+          {fetchProducts.map((product) => (
+            <ItemCart
+              product={product}
+              key={product.id}
+            />
+          ))}
         </div>
       );
   }

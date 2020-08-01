@@ -11,7 +11,7 @@ export default class Cart extends Component {
   render() {
     const { items } = this.state;
     return (
-      <CartList product={items} />
+      <CartList products={items} />
     );
   }
 }

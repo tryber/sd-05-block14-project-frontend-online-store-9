@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 
 class ItemCart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { initialQuantity: this.props.qtd };
+  }
+
   render() {
-    const { product: { title } } = this.props;
+    const { product: { title, initial_quantity, handleClick } } = this.props;
     return (
       <div>
         <span
@@ -10,7 +15,16 @@ class ItemCart extends Component {
         >
           {title}
         </span>
-        <span data-testid="shopping-cart-product-quality" />
+        <span>
+
+          Quantidade:
+          <span
+            key="shopping-cart-product-quantity"
+            data-testid="shopping-cart-product-quantity"
+          >
+            1
+          </span>
+        </span>
       </div>
     );
   }
