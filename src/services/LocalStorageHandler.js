@@ -4,7 +4,7 @@ export function AddToCart(id) {
   if (locaCartItems) {
     cartItems.push(...JSON.parse(locaCartItems));
   }
-  cartItems.push(id);
+  if (!cartItems.includes(id)) cartItems.push(id);
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
