@@ -7,7 +7,7 @@ class ItemCart extends Component {
   }
 
   render() {
-    const { product: { title, initial_quantity, handleClick } } = this.props;
+    const { product: { title } } = this.props;
     return (
       <div>
         <span

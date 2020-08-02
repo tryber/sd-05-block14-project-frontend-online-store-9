@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CartVazio from '../components/CarrinhoVazio';
 import Header from '../components/Header';
 import CartList from '../components/CartList';
 import { getItemFromLocal } from '../services/LocalStorageHandler';
@@ -15,7 +14,6 @@ export default class Cart extends Component {
     return (
       <div>
         <Header />
-        <CartVazio />
         <CartList products={items} />
       </div>
     );
