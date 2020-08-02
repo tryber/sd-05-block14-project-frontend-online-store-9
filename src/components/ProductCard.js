@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
-import AddToCart from '../services/LocalStorageHandler';
+import { AddToCart } from '../services/LocalStorageHandler';
 
 export default class ProductCard extends Component {
   render() {
