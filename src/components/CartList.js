@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CartVazio from './CarrinhoVazio';
 import ItemCart from './ItemCart';
-import { getProductById } from '../services/api';
 
 export default class CartList extends Component {
   constructor(props) {
@@ -12,16 +11,15 @@ export default class CartList extends Component {
   async componentDidMount() {
     const { products } = this.props;
     if (products.length > 0) {
-      const items = [];
-      for (let i = 0; i < products.length; i++) {
+      const promisesArr = [];
+      for (let i = 0; i < products.length; i += 1) {
         const itemId = products[i];
-        const response = await fetch(`https://api.mercadolibre.com/items/${itemId}`);
-        const data = await response.json();
-        items.push(data);
+        promisesArr.push(fetch(`https://api.mercadolibre.com/items/${itemId}`));
       }
-      this.setState(
-        { fetchProducts: items },
-      );
+
+      Promise.all(promisesArr)
+      .then((response) => Promise.all(response.map((item) => item.json())))
+      .then((data) => this.setState({ fetchProducts: data }));
     }
   }
 
