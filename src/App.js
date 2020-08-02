@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-
 import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
-import './App.css';
 
 function App() {
   return (

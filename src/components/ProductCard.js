@@ -8,10 +8,7 @@ export default class ProductCard extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div
-        data-testid="product"
-        className="card"
-      >
+      <div data-testid="product" className="card">
         <button
           type="button"
           className="product-add-to-cart"
@@ -20,11 +17,13 @@ export default class ProductCard extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <Link to={`/details/${product.id}`} data-testid="product-detail-link">
-          <img className="card-image" src={product.thumbnail} alt={product.title} />
-          <h4 className="card-title">{product.title}</h4>
-          <p className="card-price">{product.price}</p>
-        </Link>
+        <div className="card-body">
+          <Link to={`/details/${product.id}`} data-testid="product-detail-link">
+            <img className="card-image" src={product.thumbnail} alt={product.title} />
+            <h4 className="card-title">{product.title}</h4>
+            <p className="card-price">{`R$ ${Number(product.price).toFixed(2)}`}</p>
+          </Link>
+        </div>
       </div>
     );
   }
