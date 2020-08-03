@@ -4,6 +4,7 @@ import { AddToCart } from '../services/LocalStorageHandler';
 import Header from '../components/Header';
 import './ProductDetails.css';
 
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
