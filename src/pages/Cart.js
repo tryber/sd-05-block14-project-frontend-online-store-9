@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import CartList from '../components/CartList';
 import { getItemFromLocal } from '../services/LocalStorageHandler';
 
-
 export default class Cart extends Component {
   constructor(props) {
     super(props);

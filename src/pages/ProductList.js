@@ -10,13 +10,13 @@ import { getItemFromLocal } from '../services/LocalStorageHandler';
 import * as api from '../services/api';
 import './ProductList.css';
 
-function ContadorCart() {
+/* function ContadorCart() {
   return (
     <div className="contador" data-testid="shopping-cart-size">
       {getItemFromLocal().length}
     </div>
   );
-}
+} */
 
 function CartButton() {
   return (
@@ -43,9 +43,16 @@ class ProductList extends Component {
       category: undefined,
       update: false,
       toCart: [],
+      contador
     };
     this.getState = this.getState.bind(this);
     this.getProducts = this.getProducts.bind(this);
+  }
+
+  componentDidUpdate() {
+    <div className="contador" data-testid="shopping-cart-size">
+      {getItemFromLocal().length}
+    </div>
   }
 
   async getProducts() {
