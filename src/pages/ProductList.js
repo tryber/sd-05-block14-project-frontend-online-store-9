@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Search from '../components/Search';
-import cartImg from '../images/cart.png';
 import lupaImg from '../images/lupa.png';
-import logoImg from '../images/logo.png';
 import Categories from '../components/Categories';
 import List from '../components/List';
+import cartImg from '../images/cart.png';
+import logoImg from '../images/logo.png';
+import { getItemFromLocal } from '../services/LocalStorageHandler';
 import * as api from '../services/api';
 import './ProductList.css';
+
+function ContadorCart() {
+  return (
+    <div className="contador" data-testid="shopping-cart-size">
+      {getItemFromLocal().length}
+    </div>
+  );
+}
+
+function CartButton() {
+  return (
+    <div className="shopping-cart-button-list">
+      <ContadorCart />
+      <Link to="/cart">
+        <img
+          className="cart-image"
+          data-testid="shopping-cart-button"
+          alt="Imagem do Carrinho"
+          src={cartImg}
+        />
+      </Link>
+    </div>
+  );
+}
 
 class ProductList extends Component {
   constructor(props) {
@@ -17,6 +42,7 @@ class ProductList extends Component {
       searchText: undefined,
       category: undefined,
       update: false,
+      toCart: [],
     };
     this.getState = this.getState.bind(this);
     this.getProducts = this.getProducts.bind(this);
@@ -55,20 +81,15 @@ class ProductList extends Component {
     return (
       <div>
         <header className="header">
-          <img className="logoImg" src={logoImg} alt="Logo" />
+          <Link to="/">
+            <img className="logoImg" src={logoImg} alt="Logo" />
+          </Link>
           <Search
             onSearchTextChange={this.getState}
             onClick={this.onClick}
           />
           {this.botao()}
-          <Link to="/cart" className="shopping-cart-button">
-            <img
-              className="shopping-cart-button"
-              data-testid="shopping-cart-button"
-              alt="Imagem do Carrinho"
-              src={cartImg}
-            />
-          </Link>
+          <CartButton />
         </header>
         <div className="body">
           <div>
