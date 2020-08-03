@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Storage from '../services/LocalStorageHandler';
+import { AddToCart } from '../services/LocalStorageHandler';
+import Header from '../components/Header';
+import './ProductDetails.css';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -46,10 +48,12 @@ class ProductDetails extends React.Component {
     return (
       <button
         data-testid="product-detail-add-to-cart"
-        className="shopping-cart-button"
+        className="cart-button-add"
         type="button"
+
         onClick={() => {
-          Storage(this.props.match.params.id);
+          const { match: { params: { id } } } = this.props;
+          AddToCart(id);
         }}
       >
         Adicionar ao Carrinho
@@ -64,24 +68,29 @@ class ProductDetails extends React.Component {
 
     return (
       <div>
-        <div>
-          <h1 data-testid="product-detail-name">{product.title}</h1>
-          <img src={product.thumbnail} alt="product thumbnail" />
-          <h2>{product.price}</h2>
+        <Header />
+        <div className="detailsBody">
+          <Link className="linkClass" to="/">Voltar</Link>
+          <div className="content">
+            <div className="detailsCard">
+              <h1 data-testid="product-detail-name">{product.title}</h1>
+              <img className="imagemDet" src={product.thumbnail} alt="product thumbnail" />
+              <h2>{`R$ ${Number(product.price).toFixed(2)}`}</h2>
+              {this.botaoAdd()}
+            </div>
+            <div className="commentBar">
+              <label htmlFor="commentBar">Escreva um comentário sobre o produto:</label><br />
+              <input
+                data-testid="product-detail-evaluation" type="text" id="commentBar"
+                value={newComment} onChange={this.updateCommentList}
+              />
+              <button type="submitt" onClick={this.addComment}>Enviar</button>
+              <ul>
+                {commentList.map((comment, index) => <li className="comentario" key={`${index + 1}`}>{comment}</li>)}
+              </ul>
+            </div>
+          </div>
         </div>
-        <div>
-          <label htmlFor="commentBar">Escreva um comentário sobre o produto:</label>
-          <input
-            data-testid="product-detail-evaluation" type="text" id="commentBar"
-            value={newComment} onChange={this.updateCommentList}
-          />
-          <button type="submitt" onClick={this.addComment}>Enviar</button>
-          <ul>
-            {commentList.map((comment, index) => <li key={`${index + 1}`}>{comment}</li>)}
-          </ul>
-        </div>
-        <Link to="/">Voltar</Link>
-        {this.botaoAdd()}
       </div>
     );
   }

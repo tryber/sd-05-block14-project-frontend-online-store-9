@@ -1,0 +1,29 @@
+header {
+  align-items: center;
+  background-color: #fff159;
+  display: flex;
+  padding: 5px 20%;
+}
+
+.logoImg {
+  height: 70px;
+  margin-left: 20%;
+}
+
+.shopping-cart-button {
+  margin-left: 78%;
+}
+
+.contador {
+  background-color: rgb(194, 18, 18);
+  border-radius: 100%;
+  color: white;
+  font-size: 12px;
+  margin: 0 0 0 15px;
+  padding: 2px;
+  text-align: center;
+}
+
+.cart-image {
+  height: 35px;
+}
