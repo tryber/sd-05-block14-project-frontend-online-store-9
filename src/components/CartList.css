@@ -1,0 +1,9 @@
+.products-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-cart {
+  border: solid black 1px;
+}

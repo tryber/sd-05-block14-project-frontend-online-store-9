@@ -18,8 +18,8 @@ export default class CartList extends Component {
       }
 
       Promise.all(promisesArr)
-      .then((response) => Promise.all(response.map((item) => item.json())))
-      .then((data) => this.setState({ fetchProducts: data }));
+        .then((response) => Promise.all(response.map((item) => item.json())))
+        .then((data) => this.setState({ fetchProducts: data }));
     }
   }
 
@@ -29,7 +29,7 @@ export default class CartList extends Component {
       <CartVazio />
     )
       : (
-        <div className="productslist">
+        <div className="products-list">
           {fetchProducts.map((product) => (
             <ItemCart
               product={product}

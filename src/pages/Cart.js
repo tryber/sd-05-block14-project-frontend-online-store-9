@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import CartList from '../components/CartList';
 import { getItemFromLocal } from '../services/LocalStorageHandler';
+import '../components/CartList.css';
 
 export default class Cart extends Component {
   constructor(props) {

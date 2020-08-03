@@ -9,7 +9,7 @@ class ItemCart extends Component {
   render() {
     const { product: { title } } = this.props;
     return (
-      <div>
+      <div className="item-cart">
         <span
           data-testid="shopping-cart-product-name"
         >
