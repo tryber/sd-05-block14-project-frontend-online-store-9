@@ -4,7 +4,6 @@ import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import Payment from './pages/Payment';
-import './App.css';
 
 function App() {
   return (

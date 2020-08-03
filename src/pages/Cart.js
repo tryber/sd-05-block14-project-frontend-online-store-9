@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import CartVazio from '../components/CarrinhoVazio';
 import Header from '../components/Header';
 import CartList from '../components/CartList';
 import { getItemFromLocal } from '../services/LocalStorageHandler';
@@ -16,10 +15,9 @@ export default class Cart extends Component {
     return (
       <div>
         <Header />
-        <CartVazio />
         <CartList products={items} />
         <Link to="/payment">
-          <button data-testeid="checkout-products">Finalizar a compra</button>
+          <button data-testid="checkout-products">Finalizar a compra</button>
         </Link>
       </div>
     );

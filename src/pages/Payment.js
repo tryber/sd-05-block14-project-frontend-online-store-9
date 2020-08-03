@@ -18,8 +18,6 @@ class Payment extends React.Component {
 
   updateState(event) {
     const { name, value } = event.target;
-    console.log(value);
-    console.log(name);
     this.setState({ [name]: value });
   }
 
@@ -96,7 +94,7 @@ class Payment extends React.Component {
       <div>
         <label htmlFor="checkout-cep">CEP:</label>
         <input
-          data-test-id="checkout-cep" type="text" name="cep"
+          data-testid="checkout-cep" type="text" name="cep"
           value={cep} onChange={this.updateState}
         />
         <br />
@@ -128,7 +126,7 @@ class Payment extends React.Component {
           {this.renderCpf()}
           {this.renderCep()}
           {this.renderAddress()}
-          <button type="submitt" onClick={this.confirmPurchase}>Confirmar</button>
+          <button type="submit" onClick={this.confirmPurchase}>Confirmar</button>
         </div>
         <Link to="/">Voltar</Link>
       </div>
