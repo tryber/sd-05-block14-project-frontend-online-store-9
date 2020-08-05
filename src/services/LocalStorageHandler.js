@@ -1,17 +1,21 @@
 export function AddToCart(id) {
-  const cartItems = [];
+  let cartItems = {};
   const locaCartItems = localStorage.getItem('cart');
   if (locaCartItems) {
-    cartItems.push(...JSON.parse(locaCartItems));
+    cartItems = { ...JSON.parse(locaCartItems) };
   }
-  if (!cartItems.includes(id)) cartItems.push(id);
+  if (!Object.keys(cartItems).includes(id)) {
+    cartItems[id] = 1;
+  } else {
+    cartItems[id] += 1;
+  }
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
 export function getItemFromLocal() {
-  const items = [];
+  let items = {};
   const localCartItems = localStorage.getItem('cart');
-  if (localCartItems) { items.push(...JSON.parse(localCartItems)); }
+  if (localCartItems) { items = { ...JSON.parse(localCartItems) }; }
   return items;
 }
 
