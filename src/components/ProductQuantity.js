@@ -40,7 +40,9 @@ export default class ProductQuantity extends Component {
         </span>
         <button
           type="button"
-          onClick={() => { this.decreaseItem(changeQuantity); }}
+          onClick={() => {
+            this.decreaseItem(changeQuantity);
+          }}
           className="product-decrease-quantity"
           data-testid="product-decrease-quantity"
         >
