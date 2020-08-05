@@ -33,16 +33,10 @@ export default class ProductQuantity extends Component {
     const { quantity } = this.state;
     return (
       <div className="quantity-container">
-        <span
-          className="quantity"
-        >
-          Quantidade:
-        </span>
+        <span className="quantity">Quantidade:</span>
         <button
           type="button"
-          onClick={() => {
-            this.decreaseItem(changeQuantity);
-          }}
+          onClick={() => { this.decreaseItem(changeQuantity); }}
           className="product-decrease-quantity"
           data-testid="product-decrease-quantity"
         >
