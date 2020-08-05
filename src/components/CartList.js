@@ -23,14 +23,6 @@ export default class CartList extends Component {
     }
   }
 
-  ItensCar() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
-
   render() {
     const { fetchProducts } = this.state;
     return !fetchProducts ? (
