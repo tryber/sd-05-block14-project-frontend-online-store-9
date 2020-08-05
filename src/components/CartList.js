@@ -5,34 +5,40 @@ import ItemCart from './ItemCart';
 export default class CartList extends Component {
   constructor(props) {
     super(props);
-    this.state = { fetchProducts: undefined };
+    const { products } = this.props;
+    this.state = {
+      products: { ...products },
+      fetchProducts: undefined,
+    };
   }
 
   async componentDidMount() {
     const { products } = this.props;
-    if (products.length > 0) {
+    const itemIds = Object.keys(products);
+    if (itemIds.length > 0) {
       const promisesArr = [];
-      for (let i = 0; i < products.length; i += 1) {
-        const itemId = products[i];
-        promisesArr.push(fetch(`https://api.mercadolibre.com/items/${itemId}`));
+      for (let itemId = 0; itemId < itemIds.length; itemId += 1) {
+        promisesArr.push(fetch(`https://api.mercadolibre.com/items/${itemIds[itemId]}`));
       }
 
       Promise.all(promisesArr)
-      .then((response) => Promise.all(response.map((item) => item.json())))
-      .then((data) => this.setState({ fetchProducts: data }));
+        .then((response) => Promise.all(response.map((item) => item.json())))
+        .then((data) => this.setState({ fetchProducts: data }));
     }
   }
 
   render() {
-    const { fetchProducts } = this.state;
+    const { fetchProducts, products } = this.state;
+    // const { products } = this.props;
     return !fetchProducts ? (
       <CartVazio />
     )
       : (
-        <div className="productslist">
+        <div className="products-list">
           {fetchProducts.map((product) => (
             <ItemCart
               product={product}
+              quantity={products[product.id]}
               key={product.id}
             />
           ))}

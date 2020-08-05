@@ -1,0 +1,25 @@
+.products-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-cart {
+  align-items: center;
+  border: solid black 1px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 5px;
+}
+
+.shopping-cart-product-name {
+  max-width: 350px;
+}
+
+.shopping-cart-product-quantity {
+  padding-left: 5px;
+  width: 200px;
+}
+
+.quantity {
+  padding: 0 5px;
+}

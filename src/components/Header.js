@@ -8,7 +8,7 @@ import './Header.css';
 function ContadorCart() {
   return (
     <div className="contador" data-testid="shopping-cart-size">
-      {getItemFromLocal().length}
+      {Object.values(getItemFromLocal()).reduce((acc, val) => acc + val, 0)}
     </div>
   );
 }
